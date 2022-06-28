@@ -1,6 +1,0 @@
-What I Installed into nodemodules
-
--Install axios
--Install react-router-dom
--Install Bootswatch
--Install bootstrap@5.2.0-beta1
