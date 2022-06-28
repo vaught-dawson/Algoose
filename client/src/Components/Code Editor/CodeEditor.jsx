@@ -4,9 +4,11 @@ import { EditorView, basicSetup } from "codemirror";
 import { dracula } from "@uiw/codemirror-theme-dracula";
 import { EditorState, inputHandler } from "@codemirror/state";
 const CodeEditor = () => {
+  let algoDefault = `function twoSum(num1, num1) {\n    \n}`;
+
   const state = EditorState.create({
     extensions: [basicSetup, javascript(), dracula],
-    // rangeSet
+    doc: algoDefault,
   });
 
   const editorElement = useCallback((editorElement) => {
