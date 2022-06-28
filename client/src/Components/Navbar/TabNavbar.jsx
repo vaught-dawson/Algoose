@@ -25,7 +25,7 @@ const TabNavbar = () => {
                 !isReady ? 
                 <Tab eventKey="notReady" title="Solution" tabClassName="opacity-25" disabled ></Tab>
                 :
-                <Tab eventKey="notReady" title="Solution" tabClassName="opacity-100"><SolutionPage/></Tab>
+                <Tab eventKey="notReady" title="Solution" className="bg-dark" tabClassName="opacity-100"><SolutionPage/></Tab>
             }
             
         </Tabs>
