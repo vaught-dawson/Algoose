@@ -1,0 +1,8 @@
+.tab-content{
+    height: 95%;
+    display: flex;
+}
+.tab-pane{
+    display: flex;
+    width: 100%;
+}
