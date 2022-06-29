@@ -1,23 +1,14 @@
 import React, { useEffect, useState } from "react";
 import CountDownTimer from "../Countdown/CountDownTimer";
-import axios from "axios";
+
 
 const ProblemDesc = (props) => {
-	const [algo, setAlgo] = useState()
+	const [algo, setAlgo] = useState(props.algo)
 	const oneHour = 0.1 * 60 * 1000;
 	const now = new Date().getTime();
 	const timeTill1hour = now + oneHour;
 
-	const getOne = async () =>{
-		const response = await axios.get("http://localhost:8080/get/algo/3")
-		return response.data;
-	}
-
-
-	useEffect(() =>{
-		getOne()
-			.then(setAlgo);
-	}, [])
+	
 
 	return algo ? (
 		<div className="bg-dark p-4 container-fluid rounded border-none">

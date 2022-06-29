@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProblemDesc from "../Problems/ProblemDesc";
 import { Tabs, Tab } from "react-bootstrap";
-
+import axios from "axios";
 import "../../styles/tabStyle.css";
 
 import SolutionPage from "../Problems/SolutionPage";
@@ -9,12 +9,27 @@ import SolutionPage from "../Problems/SolutionPage";
 const TabNavbar = () => {
 	const [isReady, setIsReady] = useState(false);
 	const [key, setKey] = useState("description");
+	const [algo, setAlgo] = useState()
+
+
+
+	const getOne = async () =>{
+		const response = await axios.get("http://localhost:8080/get/algo/1")
+		console.log(response.data)
+		return response.data;
+	}
+
+
+	useEffect(() =>{
+		getOne()
+			.then(setAlgo);
+	}, [])
 
 	const handleReadyState = (boolean) => {
 		setIsReady(boolean);
 	};
 
-	return (
+	return algo ? (
 		<Tabs activeKey={key} className="d-flex" onSelect={(k) => setKey(k)}>
 			<Tab
 				eventKey="description"
@@ -22,11 +37,11 @@ const TabNavbar = () => {
 				className="h-100 bg-dark flex-fill rounded"
 				tabClassName={key === "description" && "bg-dark"}
 			>
-				<ProblemDesc setReady={handleReadyState} isReady={isReady} />
+				<ProblemDesc setReady={handleReadyState} isReady={isReady} algo={algo} />
 			</Tab>
 			{!isReady ? (
 				<Tab eventKey="notReady" title="Solution" tabClassName="opacity-25" disabled>
-					<SolutionPage />
+					<SolutionPage algo={algo} />
 				</Tab>
 			) : (
 				<Tab
@@ -35,10 +50,12 @@ const TabNavbar = () => {
 					className="bg-dark"
 					tabClassName={key === "notReady" && "bg-dark"}
 				>
-					<SolutionPage />
+					<SolutionPage algo={algo}/>
 				</Tab>
 			)}
 		</Tabs>
+	) : (
+		<h1>Loading...</h1>
 	);
 };
 

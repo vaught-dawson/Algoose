@@ -6,14 +6,10 @@ import java.util.ArrayList;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
-
+//needs args
 @Document(collection = "Algo")
 public class Algo {
 	
-	
-
-	
-
 	
 
 	@Transient
@@ -28,7 +24,9 @@ public class Algo {
 	private String description;
 	
 	private ArrayList<String> examples;
-
+	
+	private String solution;
+	
 	public int getId() {
 		return id;
 	}
@@ -60,5 +58,15 @@ public class Algo {
 	public void setExamples(ArrayList<String> examples) {
 		this.examples = examples;
 	}
+
+	public String getSolution() {
+		return solution;
+	}
+
+	public void setSolution(String solution) {
+		this.solution = solution;
+	}
+
+	
 }
 
