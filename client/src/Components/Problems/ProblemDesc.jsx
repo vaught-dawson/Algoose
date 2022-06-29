@@ -1,23 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CountDownTimer from "../Countdown/CountDownTimer";
+import axios from "axios";
 
 const ProblemDesc = (props) => {
+	const [algo, setAlgo] = useState()
 	const oneHour = 0.1 * 60 * 1000;
 	const now = new Date().getTime();
 	const timeTill1hour = now + oneHour;
 
-	const algo = {
-		name: "TwoSum",
-		description:
-			"Given an array of integers, find two numbers such that they add up to a specific target number. \n\nThe function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.\n\nYou may assume that each input would have exactly one solution.",
-		examples: [
-			"Input: nums = [2,7,11,15], target = 9\nOutput: [0,1]\nExplanation: Because nums[0] + nums[1] == 9, we return [0, 1].",
-			"Input: nums = [3,2,4], target = 6\nOutput: [1,2]",
-			"Input: nums = [3,3], target = 6\nOutput: [0,1]",
-		],
-	};
+	const getOne = async () =>{
+		const response = await axios.get("http://localhost:8080/get/algo/3")
+		return response.data;
+	}
 
-	return (
+
+	useEffect(() =>{
+		getOne()
+			.then(setAlgo);
+	}, [])
+
+	return algo ? (
 		<div className="bg-dark p-4 container-fluid rounded border-none">
 			<h3>Daily Algo: {algo.name}</h3>
 			{!props.isReady && <CountDownTimer targetDate={timeTill1hour} setReady={props.setReady} />}
@@ -41,6 +43,8 @@ const ProblemDesc = (props) => {
 				);
 			})}
 		</div>
+	) : (
+		<h1>Loading...</h1>
 	);
 };
 
