@@ -22,7 +22,7 @@ const SolutionPage = () => {
                 }
             };`
         })
-    })
+    }, [])
 
     return (
         solution ?
