@@ -1,8 +1,6 @@
 import React from "react";
-import SolutionPage from "../Problems/SolutionPage";
 import DateTimeDisplay from "./DateTimeDisplay";
 import { useCountdown } from "../../hooks/useCountdown";
-import { Tab } from "react-bootstrap";
 import "../../styles/tabStyle.css";
 
 const CountDownTimer = (props) => {

@@ -25,13 +25,17 @@ const SolutionPage = () => {
     })
 
     return (
-        <div className="p-4">
+        solution ?
+            <div className="p-4">
             <h3 className="border-bottom">Solution for: {solution.name}</h3>
             <div className="bg-black">
             <code className="mt-3 text-primary">{solution.solution}</code>
             </div>
             
-        </div>
+            </div>
+            :
+            <h1>Loading....</h1>
+        
     );
 };
 
