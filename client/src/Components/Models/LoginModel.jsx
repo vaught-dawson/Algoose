@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap";
 
+
 const LoginModel = () => {
+
+
 	return (
 		<div className="modal fade" id="loginModal">
 			<div className="modal-dialog">
@@ -11,7 +14,7 @@ const LoginModel = () => {
 						<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div className="modal-body">
-						<form>
+						<form >
 							<div className="row mb-3">
 								<label htmlFor="inputEmail" className="col-sm-2 col-form-label">
 									Email:

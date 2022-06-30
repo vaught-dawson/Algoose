@@ -3,6 +3,7 @@ import CodeEditor from "../Components/Code Editor/CodeEditor";
 import TabNavbar from "../Components/Navbar/TabNavbar";
 
 const ProblemPage = () => {
+	
 	return (
 		<>
 			<div className="d-flex flex-row p-4 pb-0 gap-3">
