@@ -6,24 +6,24 @@ import "../../styles/tabStyle.css";
 
 import SolutionPage from "../Problems/SolutionPage";
 
-const TabNavbar = () => {
+const TabNavbar = ({ mainAlgo = {}, timer = true }) => {
 	const [isReady, setIsReady] = useState(false);
 	const [key, setKey] = useState("description");
-	const [algo, setAlgo] = useState()
+	const [algo, setAlgo] = useState(mainAlgo);
 
+	// const getOne = async () => {
+	// 	const response = await axios.get("http://localhost:8080/get/algo/17");
+	// 	console.log(response.data);
+	// 	return response.data;
+	// };
 
+	// useEffect(() => {
+	// 	getOne().then(setAlgo);
+	// }, []);
 
-	const getOne = async () =>{
-		const response = await axios.get("http://localhost:8080/get/algo/1")
-		console.log(response.data)
-		return response.data;
-	}
-
-
-	useEffect(() =>{
-		getOne()
-			.then(setAlgo);
-	}, [])
+	useEffect(() => {
+		setAlgo(mainAlgo);
+	}, [mainAlgo]);
 
 	const handleReadyState = (boolean) => {
 		setIsReady(boolean);
@@ -37,7 +37,7 @@ const TabNavbar = () => {
 				className="h-100 bg-dark flex-fill rounded"
 				tabClassName={key === "description" && "bg-dark"}
 			>
-				<ProblemDesc setReady={handleReadyState} isReady={isReady} algo={algo} />
+				<ProblemDesc setReady={handleReadyState} isReady={isReady} algo={algo} timer={timer} />
 			</Tab>
 			{!isReady ? (
 				<Tab eventKey="notReady" title="Solution" tabClassName="opacity-25" disabled>
@@ -50,7 +50,7 @@ const TabNavbar = () => {
 					className="bg-dark"
 					tabClassName={key === "notReady" && "bg-dark"}
 				>
-					<SolutionPage algo={algo}/>
+					<SolutionPage algo={algo} />
 				</Tab>
 			)}
 		</Tabs>

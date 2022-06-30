@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 const SolutionPage = (props) => {
-	const [algo, setAlgo] = useState(props.algo)
-	
+	const [algo, setAlgo] = useState(props.algo);
+
+	useEffect(() => {
+		setAlgo(props.algo);
+	}, [props.algo]);
 
 	return algo ? (
 		<div className="p-4">

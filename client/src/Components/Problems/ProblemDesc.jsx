@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from "react";
 import CountDownTimer from "../Countdown/CountDownTimer";
 
-
 const ProblemDesc = (props) => {
-	const [algo, setAlgo] = useState(props.algo)
+	const [algo, setAlgo] = useState(props.algo);
 	const oneHour = 0.1 * 60 * 1000;
 	const now = new Date().getTime();
 	const timeTill1hour = now + oneHour;
 
-	
+	useEffect(() => {
+		console.log(props.algo);
+		setAlgo(props.algo);
+	}, [props.algo]);
+
+	if (!props.timer) {
+		props.setReady(true);
+	}
+
+	console.log(algo);
 
 	return algo ? (
-		<div className="bg-dark p-4 container-fluid rounded border-none">
-			<h3>Daily Algo: {algo.name}</h3>
-			{!props.isReady && <CountDownTimer targetDate={timeTill1hour} setReady={props.setReady} />}
+		<div className="bg-dark p-4 rounded border-none overflow-scroll mvh-80 no-scrollbar">
+			<h3>Daily Algo: {algo.title}</h3>
+			{props.timer && !props.isReady && <CountDownTimer targetDate={timeTill1hour} setReady={props.setReady} />}
 			<hr />
 			<p className="mb-4 mt-4">
 				{algo.description.split(/\n/).map((line, index) => (

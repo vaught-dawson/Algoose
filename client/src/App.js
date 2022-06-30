@@ -1,8 +1,8 @@
 import Header from "./Components/Navbar/Header";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/darkly/bootstrap.min.css";
-import ProblemPage from "./Views/ProblemPage";
-import Admin from "./Components/Admin";
+import ProblemPage from "./views/ProblemPage";
+import Admin from "./views/Admin";
 import { Route, Routes } from "react-router-dom";
 function App() {
 	return (
@@ -17,7 +17,7 @@ function App() {
 						</>
 					}
 				/>
-				<Route path ="/admin" element={<Admin />}/>
+				<Route path="/admin" element={<Admin />} />
 			</Routes>
 		</div>
 	);
