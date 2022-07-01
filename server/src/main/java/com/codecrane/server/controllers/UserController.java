@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codecrane.server.models.User;
@@ -22,15 +20,14 @@ public class UserController {
 	@Autowired
 	private SeqGeneratorService serv;
 	
-	@PostMapping("/add/user")
-	public User saveUser(@RequestBody User user) {
-		user.setId(serv.getSeqNum(User.SEQUENCE_NAME));
-		return repo.save(user);
-	}
 	
 	@GetMapping("/get/user/{id}")
-	public Optional<User> getOne(@PathVariable int id){
-		return repo.findById(id);
+	public User getOne(@PathVariable int id){
+		Optional<User> opUser = repo.findById(id);
+		if(!opUser.isPresent()) {
+			return null;
+		}
+		return opUser.get();
 	}
 	
 }

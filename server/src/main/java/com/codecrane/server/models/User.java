@@ -2,6 +2,8 @@ package com.codecrane.server.models;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
@@ -16,18 +18,21 @@ public class User {
 	@Id
 	private int id;
 	
-	@NotEmpty(message="Username is required!")
+	@NotNull(message="Username is required!")
+	@Size(min = 2, max=128, message = "Username must be at least two characters!")
 	private String userName;
 	
 	@Email(message="Enter a valid email format")
-	@NotEmpty(message="Email is required!")
+	@NotNull(message="Email is required!")
 	private String email;
 	
-	@NotEmpty(message="Password is required!")
+	@NotNull(message="Password is required!")
+	@Size(min = 8, max = 128, message = "Password must be at least 8 characters!")
 	private String password;
 	
 	@Transient
-	@NotEmpty(message="Confirm password is required!")
+	@NotNull(message="Confirm password is required!")
+	@Size(min = 8, max = 128, message = "Password must be at least 8 characters!")
 	private String confirmPassword;
 	public int getId() {
 		return id;

@@ -10,7 +10,6 @@ const ProblemPage = ({}) => {
 
 	const getOne = async () => {
 		const response = await axios.get("http://localhost:8080/get/algo/19");
-		console.log(response.data);
 		return response.data;
 	};
 
