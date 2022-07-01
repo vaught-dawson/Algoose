@@ -12,7 +12,6 @@ const LoginModal = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("submitted");
         axios
             .post("http://localhost:8080/register/user", userInfo)
             .then((res) => {

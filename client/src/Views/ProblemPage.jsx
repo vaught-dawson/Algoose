@@ -18,7 +18,6 @@ const ProblemPage = ({}) => {
 
 	const getOne = async () => {
 		const response = await axios.get("http://localhost:8080/get/algo/1");
-		console.log(response.data);
 		return response.data;
 	};
 
@@ -36,7 +35,8 @@ const ProblemPage = ({}) => {
 							isReady={isReady}
 							algo={algo}
 							timer={"true"}
-							tabTitle="Description"
+							tabTitle="Descrip
+							tion"
 						/>
 						<SolutionPage
 							algo={algo}
