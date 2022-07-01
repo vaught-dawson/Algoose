@@ -3,6 +3,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import CodeEditor from "../Components/Code Editor/CodeEditor";
+import CodeTester from "../Components/Code Editor/CodeTester";
 import TabNavbar from "../Components/Navbar/TabNavbar";
 import ProblemDesc from "../Components/Problems/ProblemDesc";
 import SolutionPage from "../Components/Problems/SolutionPage";
@@ -16,7 +17,7 @@ const ProblemPage = ({}) => {
 	};
 
 	const getOne = async () => {
-		const response = await axios.get("http://localhost:8080/get/algo/21");
+		const response = await axios.get("http://localhost:8080/get/algo/1");
 		console.log(response.data);
 		return response.data;
 	};
@@ -46,7 +47,8 @@ const ProblemPage = ({}) => {
 					</TabNavbar>
 				</div>
 				<div className="col-6 rounded" style={{ width: "calc(50% - 1em)" }}>
-					<CodeEditor />
+					{algo && <CodeEditor starterCode={algo.starterCode} />}
+					{algo && <CodeTester testCases={algo.testCases} />}
 				</div>
 			</div>
 		</>

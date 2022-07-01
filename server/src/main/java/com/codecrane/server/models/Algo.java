@@ -1,32 +1,34 @@
 package com.codecrane.server.models;
 
-
 import java.util.ArrayList;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
-//needs args
-@Document(collection = "Algo")
+
+
+@Document(collection = "algos")
 public class Algo {
-	
-	
 
 	@Transient
-	public static final String SEQUENCE_NAME="algo_sequence";
-	
-	
+	public static final String SEQUENCE_NAME = "algo_sequence";
+
 	@Id
 	private int id;
-	
+
 	private String title;
-	
+
 	private String description;
-	
-	private ArrayList<String> examples;
 	
 	private String solution;
 	
+	private String starterCode;
+
+	private ArrayList<String> examples;
+
+	private ArrayList<Object> testCases;
+
+
 	public int getId() {
 		return id;
 	}
@@ -67,6 +69,20 @@ public class Algo {
 		this.solution = solution;
 	}
 
-	
-}
+	public ArrayList<Object> getTestCases() {
+		return testCases;
+	}
 
+	public void setTestCases(ArrayList<Object> testCases) {
+		this.testCases = testCases;
+	}
+
+	public String getStarterCode() {
+		return starterCode;
+	}
+
+	public void setStarterCode(String starterCode) {
+		this.starterCode = starterCode;
+	}
+
+}
