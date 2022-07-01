@@ -5,35 +5,29 @@ import { keymap } from "@codemirror/view";
 import { indentWithTab } from "@codemirror/commands";
 import { dracula } from "@uiw/codemirror-theme-dracula";
 import { EditorState, Compartment } from "@codemirror/state";
-const CodeEditor = () => {
-  let algoDefault = `/**
-  * @param {number[]} nums
-  * @param {number} target
-  * @return {number[]}
-**/
-function twoSum(nums, target) {\n  \n}`;
-  let tabSize = new Compartment();
-  const state = EditorState.create({
-    extensions: [
-      basicSetup,
-      javascript(),
-      dracula,
-      keymap.of([indentWithTab]),
-      tabSize.of(EditorState.tabSize.of(4)),
-    ],
-    doc: algoDefault,
-  });
+const CodeEditor = ({ starterCode = "", className = "" }) => {
+	let tabSize = new Compartment();
+	const state = EditorState.create({
+		extensions: [
+			basicSetup,
+			javascript(),
+			dracula,
+			keymap.of([indentWithTab]),
+			tabSize.of(EditorState.tabSize.of(4)),
+		],
+		doc: starterCode,
+	});
 
-  const editorElement = useCallback((editorElement) => {
-    if (editorElement !== null) {
-      let view = new EditorView({
-        state,
-        parent: editorElement,
-      });
-    }
-  }, []);
+	const editorElement = useCallback((editorElement) => {
+		if (editorElement !== null) {
+			let view = new EditorView({
+				state,
+				parent: editorElement,
+			});
+		}
+	}, []);
 
-  return <div ref={editorElement}></div>;
+	return <div ref={editorElement}></div>;
 };
 
 export default CodeEditor;
