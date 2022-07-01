@@ -8,7 +8,6 @@ const ProblemDesc = (props) => {
 	const timeTill1hour = now + oneHour;
 
 	useEffect(() => {
-		console.log(props.algo);
 		setAlgo(props.algo);
 	}, [props.algo]);
 
@@ -16,7 +15,6 @@ const ProblemDesc = (props) => {
 		props.setReady(true);
 	}
 
-	console.log(algo);
 
 	return algo ? (
 		<div className="bg-dark p-4 rounded border-none overflow-scroll mvh-80 no-scrollbar">

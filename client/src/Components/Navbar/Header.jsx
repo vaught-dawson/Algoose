@@ -9,21 +9,16 @@ import RegisterModal from "../Models/RegisterModal";
 import LoginModal from "../Models/LoginModal";
 const Header = () => {
     const [user, setUser] = useState();
-    
-    if(sessionStorage.getItem("uuid")){
-        console.log(sessionStorage.getItem("uuid"))
-    }
-
-    useEffect(() =>{
-        axios.get(`http://localhost:8080/get/user/${sessionStorage.getItem("uuid")}`)
-            .then((res) => setUser(res.data));
-    }, [sessionStorage.getItem("uuid")])
 
 
-    const handleLogout = () =>{
+    useEffect(() => {
+        axios.get(`http://localhost:8080/get/user/${sessionStorage.getItem("uuid")}`).then((res) => setUser(res.data));
+    }, [sessionStorage.getItem("uuid")]);
+
+    const handleLogout = () => {
         sessionStorage.clear();
         window.location.reload(false);
-    }
+    };
 
     return (
         <ul className="nav bg-dark">
@@ -45,11 +40,16 @@ const Header = () => {
                         Problems
                     </Link>
                 </li>
-                <li className="nav-item">
-                    <Link to="/admin" className="nav-link h-100 ps-4 pe-4">
-                        Admin page
-                    </Link>
-                </li>
+                { sessionStorage.getItem("uuid") == 1 && (
+                    <>
+                    <li className="nav-item">
+                        <Link to="/admin" className="nav-link h-100 ps-4 pe-4">
+                            Admin page
+                        </Link>
+                    </li>
+                </>
+                )
+                }
             </div>
             <div className="h-100 d-flex flex-row justify-content-end col-3 align-items-center" style={{ height: "40px" }}>
                 <li className="nav-item h-100">
@@ -59,9 +59,10 @@ const Header = () => {
                 </li>
                 {sessionStorage.getItem("uuid") ? (
                     <li className="nav-item nav-link ">
-                        <button className="btn btn-primary btn-sm" onClick={handleLogout}>Logout</button>
+                        <button className="btn btn-primary btn-sm" onClick={handleLogout}>
+                            Logout
+                        </button>
                     </li>
-                    
                 ) : (
                     <>
                         <div className="d-flex flex-row align-items-center">
