@@ -25,12 +25,15 @@ const ProblemDesc = (props) => {
 			<hr />
 			<p className="mb-4 mt-4">
 				{algo.description.split(/\n/).map((line, index) => (
-					<React.Fragment key={index}>
-						{line}
-						<br />
-					</React.Fragment>
+					<>
+						<span key={index}>
+							{line}
+							<br />
+						</span>
+					</>
 				))}
 			</p>
+
 			{algo.examples.map((example, index) => {
 				return (
 					<div className="example">
@@ -43,7 +46,7 @@ const ProblemDesc = (props) => {
 			})}
 		</div>
 	) : (
-		<h1>Loading...</h1>
+		<h1 className="p-4">Loading...</h1>
 	);
 };
 
